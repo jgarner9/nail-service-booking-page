@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Parkinsans, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -7,6 +7,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+
+body {
+  margin: 0;
 }
 
 #app-wrapper {
@@ -14,4 +19,17 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+#header-wrapper {
+  height: 70px;
+  background-color: #484030;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#header-title {
+  color: #FFFFFF;
 }

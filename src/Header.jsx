@@ -1,5 +1,8 @@
 export default function Header() {
-  <div id="header">
-    <h1>Graycee's Nails</h1>
-  </div>;
+  return (
+    <div id="header-wrapper">
+      {/* TODO: Add logo element */}
+      <h1 id="header-title">Graycee&apos;s Nails</h1>
+    </div>
+  );
 }
