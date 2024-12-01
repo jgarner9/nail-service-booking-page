@@ -23,13 +23,34 @@ body {
 
 #header-wrapper {
   height: 70px;
-  background-color: #484030;
+  background-color: #523f38;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0 20px;
+  position: relative;
 }
 
 #header-title {
-  color: #FFFFFF;
+  color: #dbd5b5;
+}
+
+#step-tracker-wrapper {
+  position: absolute;
+  right: 0;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.current-step {
+  text-decoration: underline;
+}
+
+.step {
+  font-size: x-large;
+  font-weight: 800;
+  color: #dbd5b5;
 }
