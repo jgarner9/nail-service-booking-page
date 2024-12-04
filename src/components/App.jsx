@@ -5,6 +5,9 @@ import ServicePage from "./ServicePage";
 import useServices from "../hooks/useServices";
 import { Button } from "@mui/material";
 import ContextProvider from "./ContextProvider";
+import AppointmentDatePage from "./AppointmentDatePage";
+import CustomerInfoPage from "./CustomerInfoPage";
+import ConfirmationPage from "./ConfirmationPage";
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -18,6 +21,9 @@ export default function App() {
         </Header>
         <div id="page-wrapper">
           {currentStep === 1 && <ServicePage services={services} />}
+          {currentStep === 2 && <AppointmentDatePage />}
+          {currentStep === 3 && <CustomerInfoPage />}
+          {currentStep === 4 && <ConfirmationPage />}
           <div id="nav-wrapper">
             {currentStep > 1 && (
               <Button

@@ -7,7 +7,7 @@ export default function ServicePage({ services }) {
 
   return (
     <div id="service-page-wrapper">
-      <h1 id="service-title">Services</h1>
+      <h1 className="title">Services</h1>
       <Select
         id="service-select"
         value={selectedService}

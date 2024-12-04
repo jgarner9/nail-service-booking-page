@@ -80,12 +80,6 @@ h1 {
   width: 100%;
 }
 
-#service-title {
-  margin-bottom: 50px;
-  text-align: center;
-  font-size: 48px;
-}
-
 .placeholder-text {
   color: gray;
 }
@@ -107,4 +101,10 @@ h1 {
 #next-button {
   position: absolute;
   right: 0;
+}
+
+.title {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 50px;
 }
