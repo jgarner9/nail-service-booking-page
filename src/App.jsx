@@ -9,6 +9,7 @@ import ContextProvider from "./ContextProvider";
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const services = useServices();
+  console.log(currentStep);
 
   return (
     <ContextProvider>
@@ -19,20 +20,26 @@ export default function App() {
         <div id="page-wrapper">
           {currentStep === 1 && <ServicePage services={services} />}
           <div id="nav-wrapper">
-            <Button
-              variant="outlined"
-              onClick={() => setCurrentStep(currentStep + 1)}
-              color="#2C4E34"
-            >
-              Back
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => setCurrentStep(currentStep - 1)}
-              sx={{ bgcolor: "#2C4E34" }}
-            >
-              Next
-            </Button>
+            {currentStep > 1 && (
+              <Button
+                id="back-button"
+                variant="outlined"
+                onClick={() => setCurrentStep(currentStep - 1)}
+                color="#2C4E34"
+              >
+                Back
+              </Button>
+            )}
+            {currentStep < 4 && (
+              <Button
+                id="next-button"
+                variant="contained"
+                onClick={() => setCurrentStep(currentStep + 1)}
+                sx={{ bgcolor: "#2C4E34" }}
+              >
+                Next
+              </Button>
+            )}
           </div>
         </div>
       </div>

@@ -86,9 +86,20 @@ h1 {
 }
 
 #nav-wrapper {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   margin-top: 25px;
+}
+
+#back-button {
+  position: absolute;
+  left: 0;
+}
+
+#next-button {
+  position: absolute;
+  right: 0;
 }
