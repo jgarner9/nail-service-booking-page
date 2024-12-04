@@ -2,14 +2,13 @@ import { useState } from "react";
 import Header from "./Header";
 import StepTracker from "./StepTracker";
 import ServicePage from "./ServicePage";
-import useServices from "./hooks/useServices";
+import useServices from "../hooks/useServices";
 import { Button } from "@mui/material";
 import ContextProvider from "./ContextProvider";
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const services = useServices();
-  console.log(currentStep);
 
   return (
     <ContextProvider>
