@@ -7,7 +7,7 @@ export default function useServices() {
     const headers = {
       Authorization: `Bearer ${import.meta.env.VITE_EA_API_KEY}`,
     };
-    fetch("http://100.86.159.34/index.php/api/v1/services", {
+    fetch(`${import.meta.env.VITE_EA_BASE_URL}/services`, {
       headers: headers,
     })
       .then((res) => res.json())

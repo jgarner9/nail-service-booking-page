@@ -84,6 +84,21 @@ h1 {
   color: gray;
 }
 
+#date-picker-wrapper {
+  display: flex;
+  flex-direction: row;
+  min-width: 640px;
+}
+
+#available-times-wrapper {
+  min-width: 320px;
+  max-height: 336px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  align-items: center;
+}
+
 #nav-wrapper {
   position: relative;
   display: flex;
