@@ -1,5 +1,4 @@
 export default function StepTracker({ currentStep }) {
-  console.log(currentStep === 1);
   return (
     <div id="step-tracker-wrapper">
       <h2 className={`step${currentStep === 1 ? " current-step" : ""}`}>1</h2>

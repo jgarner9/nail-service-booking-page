@@ -1,5 +1,5 @@
 :root {
-  font-family: Parkinsans, sans-serif;
+  font-family: Princess Sofia, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -8,10 +8,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
+
+  --header-height: 80px;
+  --primary-color: #1c2e20;
+  --secondary-color: #f7e7d6;
 }
 
 body {
   margin: 0;
+}
+
+h1 {
+  color: var(--primary-color);
 }
 
 #app-wrapper {
@@ -19,20 +27,22 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 #header-wrapper {
-  height: 70px;
-  background-color: #523f38;
+  height: var(--header-height);
+  width: 100%;
+  background-color: var(--primary-color);
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 20px;
   position: relative;
 }
 
 #header-title {
-  color: #dbd5b5;
+  color: var(--secondary-color);
+  margin-left: 25px;
 }
 
 #step-tracker-wrapper {
@@ -45,12 +55,40 @@ body {
   width: 150px;
 }
 
-.current-step {
-  text-decoration: underline;
-}
-
 .step {
   font-size: x-large;
   font-weight: 800;
-  color: #dbd5b5;
+  color: var(--secondary-color);
+}
+
+#page-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100% - var(--header-height));
+  min-width: 300px;
+  margin-top: 150px;
+}
+
+#service-page-wrapper {
+  width: 100%;
+}
+
+#service-title {
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 48px;
+}
+
+.placeholder-text {
+  color: gray;
+}
+
+#nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 25px;
 }
