@@ -7,6 +7,13 @@ export default function ContextProvider({ children }) {
   const [selectedService, setSelectedService] = useState("default");
   const [selectedDate, setSelectedDate] = useState(dayjs(new Date()));
   const [selectedTime, setSelectedTime] = useState(null);
+  const [customerInfo, setCustomerInfo] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    notes: "",
+  });
 
   const value = useMemo(
     () => ({
@@ -15,9 +22,11 @@ export default function ContextProvider({ children }) {
       selectedDate,
       setSelectedDate,
       selectedTime,
-      setSelectedTime
+      setSelectedTime,
+      customerInfo,
+      setCustomerInfo,
     }),
-    [selectedService, selectedDate, selectedTime]
+    [selectedService, selectedDate, selectedTime, customerInfo]
   );
 
   return <context.Provider value={value}>{children}</context.Provider>;

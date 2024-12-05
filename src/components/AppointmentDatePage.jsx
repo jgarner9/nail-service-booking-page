@@ -10,7 +10,7 @@ import { Button, Stack } from "@mui/material";
 export default function AppointmentDatePage() {
   const { selectedDate, setSelectedDate, selectedTime, setSelectedTime } =
     useContext(context);
-  const availabilities = useAvailabilities(selectedDate);
+  let availabilities = useAvailabilities(selectedDate);
 
   return (
     <div id="appointment-date-page-wrapper">
@@ -25,17 +25,19 @@ export default function AppointmentDatePage() {
             onChange={(e) => {
               setSelectedDate(dayjs(e));
               setSelectedTime(null);
+              availabilities = [];
             }}
           />
         </LocalizationProvider>
         <Stack id="available-times-wrapper" spacing={1}>
           <h2>Available on {selectedDate.format("MM-DD-YYYY")}</h2>
-          {availabilities.length === 0 ? (
+          {availabilities?.length === 0 ? (
             <h3>
               <em>No available times</em>
             </h3>
           ) : (
-            availabilities.map((availability) => {
+            availabilities?.length !== 0 &&
+            availabilities?.map((availability) => {
               return (
                 <Button
                   key={availability}

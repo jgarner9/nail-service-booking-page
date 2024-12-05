@@ -99,6 +99,10 @@ h1 {
   align-items: center;
 }
 
+#customer-info-page-wrapper {
+  width: 450px;
+}
+
 #nav-wrapper {
   position: relative;
   display: flex;
