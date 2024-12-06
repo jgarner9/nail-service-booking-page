@@ -2,7 +2,7 @@ import { useContext } from "react";
 import useCustomer from "../hooks/useCustomer";
 import { context } from "./ContextProvider";
 
-export default function ConfirmationPage() {
+export default function ConfirmationPage({ services }) {
   const { selectedService, selectedDate, selectedTime, customerInfo } =
     useContext(context);
 
@@ -11,17 +11,13 @@ export default function ConfirmationPage() {
     <div id="confirmation-page-wrapper">
       <h1 className="title">Confirmation</h1>
       <h2>
-        <bold>Service:</bold> {selectedService}
+        Service:{" "}
+        {services.find((service) => service.id === selectedService).name}
       </h2>
+      <h2>Date: {selectedDate.format("MM-DD-YYYY")}</h2>
+      <h2>Time: {selectedTime}</h2>
       <h2>
-        <bold>Date:</bold> {selectedDate.format("MM-DD-YYYY")}
-      </h2>
-      <h2>
-        <bold>Time:</bold> {selectedTime}
-      </h2>
-      <h2>
-        <bold>Customer Info:</bold> {customerInfo.firstName}{" "}
-        {customerInfo.lastName}
+        Customer Info: {customerInfo.firstName} {customerInfo.lastName}
       </h2>
     </div>
   );
