@@ -4,7 +4,6 @@ import StepTracker from "./StepTracker";
 import ServicePage from "./ServicePage";
 import useServices from "../hooks/useServices";
 import { Button, createTheme, ThemeProvider } from "@mui/material";
-import ContextProvider from "./ContextProvider";
 import AppointmentDatePage from "./AppointmentDatePage";
 import CustomerInfoPage from "./CustomerInfoPage";
 import ConfirmationPage from "./ConfirmationPage";
@@ -26,7 +25,6 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <ContextProvider>
         <div id="app-wrapper">
           <Header>
             <StepTracker currentStep={currentStep}></StepTracker>
@@ -60,7 +58,7 @@ export default function App() {
             </div>
           </div>
         </div>
-      </ContextProvider>
+      </div>
     </ThemeProvider>
   );
 }
