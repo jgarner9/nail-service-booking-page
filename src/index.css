@@ -117,7 +117,8 @@ h1 {
   left: 0;
 }
 
-#next-button {
+#next-button,
+#submit-button {
   position: absolute;
   right: 0;
 }
