@@ -3,7 +3,12 @@ import Header from "./Header";
 import StepTracker from "./StepTracker";
 import ServicePage from "./ServicePage";
 import useServices from "../hooks/useServices";
-import { Button, createTheme, ThemeProvider } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
 import AppointmentDatePage from "./AppointmentDatePage";
 import CustomerInfoPage from "./CustomerInfoPage";
 import ConfirmationPage from "./ConfirmationPage";
@@ -18,7 +23,8 @@ function handleSubmit(
   date,
   time,
   duration,
-  notes
+  notes,
+  setIsLoading
 ) {
   dayjs.extend(customParseFormat);
   const start = dayjs(`${date} ${time}`, "MM-DD-YYYY HH:mm").format(
@@ -28,6 +34,7 @@ function handleSubmit(
     .add(duration, "minutes")
     .format("YYYY-MM-DD HH:mm:ss");
 
+  setIsLoading(true);
   fetch(`${import.meta.env.VITE_EA_BASE_URL}/appointments`, {
     headers: {
       "Content-Type": "application/json",
@@ -51,6 +58,7 @@ function handleSubmit(
     .then((data) => {
       console.log("Appointment created");
       console.log(data);
+      setIsLoading(false);
     });
 }
 
@@ -58,6 +66,7 @@ export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const { selectedService, selectedDate, selectedTime, customerInfo } =
     useContext(context);
+  const [isLoading, setIsLoading] = useState(false);
   const services = useServices();
   const theme = createTheme({
     palette: {
@@ -82,8 +91,25 @@ export default function App() {
           {currentStep === 2 && <AppointmentDatePage />}
           {currentStep === 3 && <CustomerInfoPage />}
           {currentStep === 4 && <ConfirmationPage services={services} />}
+          {isLoading && currentStep === 5 && (
+            <>
+              <h2>Request Processing</h2>
+              <h3>
+                This process can take up to three minutes. You may close the
+                tab, but please look out for a booking email to indicate this
+                was successful.
+              </h3>
+              <h3>
+                Once booked, please lookout for a confirmation email indicating
+                the appointment was accepted.
+              </h3>
+              <br />
+              <CircularProgress />
+            </>
+          )}
+          {!isLoading && currentStep === 5 && <h1>Appointment Booked!</h1>}
           <div id="nav-wrapper">
-            {currentStep > 1 && (
+            {currentStep > 1 && currentStep < 4 && (
               <Button
                 id="back-button"
                 variant="outlined"
@@ -114,7 +140,8 @@ export default function App() {
                     selectedTime,
                     services.find((service) => service.id === selectedService)
                       .duration,
-                    customerInfo.notes
+                    customerInfo.notes,
+                    setIsLoading
                   );
                   setCurrentStep(5);
                 }}
