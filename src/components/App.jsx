@@ -15,6 +15,7 @@ import ConfirmationPage from "./ConfirmationPage";
 import dayjs from "dayjs";
 import { context } from "./ContextProvider";
 import submitAppointment from "../utils/submitAppointment";
+import validateStepChange from "../utils/validateStepChange";
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -25,6 +26,8 @@ export default function App() {
     customerInfo,
     isLoading,
     setIsLoading,
+    error,
+    setError,
   } = useContext(context);
   const services = useServices();
   const theme = createTheme({
@@ -81,7 +84,14 @@ export default function App() {
               <Button
                 id="next-button"
                 variant="contained"
-                onClick={() => setCurrentStep(currentStep + 1)}
+                onClick={() =>
+                  validateStepChange(
+                    currentStep,
+                    setCurrentStep,
+                    selectedService,
+                    setError
+                  )
+                }
               >
                 Next
               </Button>
@@ -109,6 +119,11 @@ export default function App() {
               </Button>
             )}
           </div>
+          {error && (
+            <div id="error-message-wrapper">
+              <h2 id="error-message">{error}</h2>
+            </div>
+          )}
         </div>
       </div>
     </ThemeProvider>

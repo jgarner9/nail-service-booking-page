@@ -8,6 +8,7 @@ export default function ContextProvider({ children }) {
   const [selectedDate, setSelectedDate] = useState(dayjs(new Date()));
   const [selectedTime, setSelectedTime] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [customerInfo, setCustomerInfo] = useState({
     firstName: "",
     lastName: "",
@@ -28,8 +29,10 @@ export default function ContextProvider({ children }) {
       setCustomerInfo,
       isLoading,
       setIsLoading,
+      error,
+      setError
     }),
-    [selectedService, selectedDate, selectedTime, customerInfo, isLoading]
+    [selectedService, selectedDate, selectedTime, customerInfo, isLoading, error]
   );
 
   return <context.Provider value={value}>{children}</context.Provider>;
