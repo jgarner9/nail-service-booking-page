@@ -89,6 +89,9 @@ export default function App() {
                     currentStep,
                     setCurrentStep,
                     selectedService,
+                    selectedDate,
+                    selectedTime,
+                    customerInfo,
                     setError
                   )
                 }

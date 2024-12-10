@@ -5,11 +5,16 @@ import { useContext } from "react";
 import dayjs from "dayjs";
 import { context } from "./ContextProvider.jsx";
 import useAvailabilities from "../hooks/useAvailabilities.jsx";
-import { Button, Stack } from "@mui/material";
+import { Button, CircularProgress, Stack } from "@mui/material";
 
 export default function AppointmentDatePage() {
-  const { selectedDate, setSelectedDate, selectedTime, setSelectedTime } =
-    useContext(context);
+  const {
+    selectedDate,
+    setSelectedDate,
+    selectedTime,
+    setSelectedTime,
+    isLoading,
+  } = useContext(context);
   let availabilities = useAvailabilities(selectedDate);
 
   return (
@@ -31,7 +36,8 @@ export default function AppointmentDatePage() {
         </LocalizationProvider>
         <Stack id="available-times-wrapper" spacing={1}>
           <h2>Available on {selectedDate.format("MM-DD-YYYY")}</h2>
-          {availabilities?.length === 0 ? (
+          {isLoading && <CircularProgress />}
+          {availabilities?.length === 0 || isLoading ? (
             <h3>
               <em>No available times</em>
             </h3>

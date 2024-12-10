@@ -4,9 +4,10 @@ import { context } from "../components/ContextProvider";
 
 export default function useAvailabilities(selectedDate) {
   const [availabilities, setAvailabilities] = useState([]);
-  const { selectedService } = useContext(context);
+  const { selectedService, setIsLoading } = useContext(context);
 
   useEffect(() => {
+    setIsLoading(true);
     const headers = {
       Authorization: `Bearer ${import.meta.env.VITE_EA_API_KEY}`,
     };
@@ -21,7 +22,10 @@ export default function useAvailabilities(selectedDate) {
       }
     )
       .then((response) => response.json())
-      .then((data) => setAvailabilities(data));
+      .then((data) => {
+        setAvailabilities(data);
+        setIsLoading(false);
+      });
   }, [selectedService, selectedDate]);
 
   return availabilities;
