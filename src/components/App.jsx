@@ -53,20 +53,23 @@ function handleSubmit(
     }),
   })
     .then((res) => {
-      console.log(res.json());
+      res.json();
     })
-    .then((data) => {
-      console.log("Appointment created");
-      console.log(data);
+    .then(() => {
       setIsLoading(false);
     });
 }
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
-  const { selectedService, selectedDate, selectedTime, customerInfo } =
-    useContext(context);
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    selectedService,
+    selectedDate,
+    selectedTime,
+    customerInfo,
+    isLoading,
+    setIsLoading,
+  } = useContext(context);
   const services = useServices();
   const theme = createTheme({
     palette: {
