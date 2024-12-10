@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { context } from "./ContextProvider";
 
 export default function ServicePage({ services }) {
-  const { selectedService, setSelectedService } = useContext(context);
+  const { selectedService, setSelectedService, isLoading } =
+    useContext(context);
 
   return (
     <div id="service-page-wrapper">
@@ -18,6 +19,11 @@ export default function ServicePage({ services }) {
         <MenuItem disabled value="default">
           <em className="placeholder-text">Select A Service</em>
         </MenuItem>
+        {isLoading && (
+          <MenuItem disabled value="loading">
+            Loading...
+          </MenuItem>
+        )}
         {services?.map((service) => {
           return (
             <MenuItem key={service.id} value={service.id}>
