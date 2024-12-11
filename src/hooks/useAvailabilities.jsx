@@ -8,13 +8,16 @@ export default function useAvailabilities(selectedDate) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}/availability`, {
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        serviceId: selectedService,
-        date: dayjs(selectedDate).format("YYYY-MM-DD"),
-      }),
-    })
+    fetch(
+      `${
+        import.meta.env.VITE_BASE_URL
+      }/availability?serviceId=${selectedService}&date=${dayjs(
+        selectedDate
+      ).format("YYYY-MM-DD")}`,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         setAvailabilities(data.availabilities);

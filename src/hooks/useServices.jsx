@@ -8,19 +8,13 @@ export default function useServices() {
   useEffect(() => {
     setIsLoading(true);
 
-    const headers = {
-      Authorization: `Bearer ${import.meta.env.VITE_EA_API_KEY}`,
-    };
-
-    fetch(`${import.meta.env.VITE_EA_BASE_URL}/services`, {
-      headers: headers,
-    })
+    fetch(`${import.meta.env.VITE_BASE_URL}/services`)
       .then((res) => res.json())
       .then((data) => {
-        setServices(data);
+        setServices(data.services);
         setIsLoading(false);
       });
-  }, []);
+  }, [setIsLoading]);
 
   return services;
 }
