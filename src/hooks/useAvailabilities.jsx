@@ -8,25 +8,19 @@ export default function useAvailabilities(selectedDate) {
 
   useEffect(() => {
     setIsLoading(true);
-    const headers = {
-      Authorization: `Bearer ${import.meta.env.VITE_EA_API_KEY}`,
-    };
-    fetch(
-      `${import.meta.env.VITE_EA_BASE_URL}/availabilities?providerId=${
-        import.meta.env.VITE_PROVIDER_ID
-      }&serviceId=${selectedService}&date=${dayjs(selectedDate).format(
-        "YYYY-MM-DD"
-      )}`,
-      {
-        headers: headers,
-      }
-    )
+    fetch(`${import.meta.env.VITE_API_URL}/availability`, {
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        serviceId: selectedService,
+        date: dayjs(selectedDate).format("YYYY-MM-DD"),
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
-        setAvailabilities(data);
+        setAvailabilities(data.availabilities);
         setIsLoading(false);
       });
-  }, [selectedService, selectedDate]);
+  }, [selectedService, selectedDate, setIsLoading]);
 
   return availabilities;
 }
