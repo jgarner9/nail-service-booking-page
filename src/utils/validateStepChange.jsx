@@ -15,7 +15,7 @@ export default function validateStepChange(
     step === 3 &&
     (customerInfo.firstName === "" ||
       customerInfo.lastName === "" ||
-      customerInfo.phoneNumber === "" ||
+      customerInfo.phone === "" ||
       customerInfo.email === "")
   ) {
     setError("Please fill out all fields.");

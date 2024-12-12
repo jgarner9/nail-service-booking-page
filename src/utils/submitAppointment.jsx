@@ -3,7 +3,6 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 
 export default function submitAppointment(
   serviceId,
-  providerId,
   customerId,
   date,
   time,
@@ -20,21 +19,17 @@ export default function submitAppointment(
     .format("YYYY-MM-DD HH:mm:ss");
 
   setIsLoading(true);
-  fetch(`${import.meta.env.VITE_EA_BASE_URL}/appointments`, {
+  fetch(`${import.meta.env.VITE_BASE_URL}/appointment`, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_EA_API_KEY}`,
     },
     method: "POST",
     body: JSON.stringify({
-      serviceId: parseInt(serviceId),
-      providerId: parseInt(providerId),
-      customerId: parseInt(customerId),
-      status: "Booked",
+      serviceId: serviceId,
+      customerId: customerId,
       start: start,
       end: end,
       notes: notes,
-      location: "Online",
     }),
   })
     .then((res) => {

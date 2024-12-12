@@ -71,11 +71,14 @@ export default function App() {
           )}
           {!isLoading && currentStep === 5 && <h1>Appointment Booked!</h1>}
           <div id="nav-wrapper">
-            {currentStep > 1 && currentStep < 4 && (
+            {currentStep > 1 && currentStep <= 4 && (
               <Button
                 id="back-button"
                 variant="outlined"
-                onClick={() => setCurrentStep(currentStep - 1)}
+                onClick={() => {
+                  setError(null);
+                  setCurrentStep(currentStep - 1);
+                }}
               >
                 Back
               </Button>
@@ -106,7 +109,6 @@ export default function App() {
                 onClick={() => {
                   submitAppointment(
                     selectedService,
-                    import.meta.env.VITE_PROVIDER_ID,
                     customerInfo.id,
                     dayjs(selectedDate).format("MM-DD-YYYY"),
                     selectedTime,

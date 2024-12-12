@@ -31,9 +31,9 @@ export default function CustomerInfoPage() {
           placeholder="Phone Number"
           variant="outlined"
           fullWidth
-          value={customerInfo.phoneNumber}
+          value={customerInfo.phone}
           onChange={(e) =>
-            setCustomerInfo({ ...customerInfo, phoneNumber: e.target.value })
+            setCustomerInfo({ ...customerInfo, phone: e.target.value })
           }
         />
         <TextField

@@ -14,7 +14,8 @@ export default function useServices() {
         setServices(data.services);
         setIsLoading(false);
       });
-  }, [setIsLoading]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return services;
 }
