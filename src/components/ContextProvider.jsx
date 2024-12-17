@@ -12,7 +12,7 @@ export default function ContextProvider({ children }) {
   const [customerInfo, setCustomerInfo] = useState({
     firstName: "",
     lastName: "",
-    phoneNumber: "",
+    phone: "",
     email: "",
     notes: "",
   });

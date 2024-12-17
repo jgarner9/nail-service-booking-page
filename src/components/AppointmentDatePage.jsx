@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { context } from "./ContextProvider.jsx";
 import useAvailabilities from "../hooks/useAvailabilities.jsx";
 import { Button, CircularProgress, Stack } from "@mui/material";
+import formatTime from "../utils/formatTime.jsx";
 
 export default function AppointmentDatePage() {
   const {
@@ -53,7 +54,7 @@ export default function AppointmentDatePage() {
                   }
                   onClick={() => setSelectedTime(availability)}
                 >
-                  {availability}
+                  {formatTime(availability)}
                 </Button>
               );
             })

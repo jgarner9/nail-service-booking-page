@@ -3,6 +3,7 @@ import { context } from "../components/ContextProvider";
 
 export default function useCustomer() {
   const { customerInfo, setCustomerInfo } = useContext(context);
+  const copy = { ...customerInfo };
 
   useEffect(() => {
     fetch(
@@ -14,7 +15,7 @@ export default function useCustomer() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setCustomerInfo(data.customer);
+        setCustomerInfo({ ...data.customer, notes: copy.notes });
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
