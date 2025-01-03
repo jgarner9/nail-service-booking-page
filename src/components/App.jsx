@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 import { context } from "./ContextProvider";
 import submitAppointment from "../utils/submitAppointment";
 import validateStepChange from "../utils/validateStepChange";
-import formatTime from "../utils/formatTime";
+import AppointmentBookedPage from "./AppointmentBookedPage";
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -44,20 +44,7 @@ export default function App() {
             <CircularProgress />
           </>
         )}
-        {!isLoading && currentStep === 5 && (
-          <>
-            <h1>Appointment Booked!</h1>
-            <h2>
-              Service:{" "}
-              {services.find((service) => service.id === selectedService).name}
-            </h2>
-            <h2>Date: {selectedDate.format("MM-DD-YYYY")}</h2>
-            <h2>Time: {formatTime(selectedTime)}</h2>
-            <h2>
-              Customer Info: {customerInfo.firstName} {customerInfo.lastName}
-            </h2>
-          </>
-        )}
+        {!isLoading && currentStep === 5 && <AppointmentBookedPage />}
         <div id="nav-wrapper">
           {currentStep > 1 && currentStep <= 4 && (
             <Button
@@ -95,7 +82,6 @@ export default function App() {
               variant="contained"
               id="submit-button"
               onClick={() => {
-                console.log(customerInfo.notes);
                 submitAppointment(
                   selectedService,
                   customerInfo.id,
